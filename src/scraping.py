@@ -23,6 +23,10 @@ def setup_chrome_webdriver(chrome_driver_manager: ChromeDriverManager) -> webdri
     options.add_argument("--no-sandbox")
     options.add_argument("--window-size=1920,1080")
     options.add_argument("--lang=en")
+    options.add_argument("start-maximized")
+    options.add_argument("enable-automation")
+    options.add_argument("--disable-browser-side-navigation")
+    options.add_argument("--disable-gpu")
     driver = webdriver.Chrome(service=Service(chrome_driver_manager), options=options)
     driver.delete_all_cookies()
     return driver
