@@ -3,6 +3,7 @@ import random
 import time
 
 from selenium import webdriver
+from selenium.common.exceptions import StaleElementReferenceException
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
@@ -78,6 +79,8 @@ def refresh_on_access_denied(driver: webdriver) -> None:
             logging.info("Access Denied detected. Refreshing ...")
             driver.refresh()
             time.sleep(1)
+    except StaleElementReferenceException:
+        return
     except Exception as e:
         if "Unable to locate element" in e.message:
             return

@@ -34,7 +34,6 @@ def main(sysargs):
     setup_logger(args)
     token, user = get_pushover_keys("pushover_api_keys.json")
     chrome_driver_manager = ChromeDriverManager().install()
-
     previous_offer_states = {
         key: [] for key in urls_to_check.keys()
     }
@@ -44,12 +43,13 @@ def main(sysargs):
             for index, (sport, url) in enumerate(urls_to_check.items()):
                 # setup chrome
                 driver = setup_chrome_webdriver(chrome_driver_manager)
+
                 # get events page
                 logging.info("getting url")
                 driver.get(url)
                 wait_for_page_to_load(driver)
 
-                # check url
+                # wait patiently in queue
                 while driver.current_url != url:
                     logging.info("checking access denied")
                     refresh_on_access_denied(driver)
@@ -86,14 +86,14 @@ def main(sysargs):
                         f"New {sport} dates available: {number_of_dates_available}.\nurl: {offer_links}.\nNew states: {diff_offer_states}"
                     }
                     logging.info("Sending push notification ...")
-                    send_push_notification(message, user, token)
+                    send_push_notification(message, token, user)
 
 
         except Exception as e:
             logging.info(e)
             message = {f"Something unexpected happened. Error: {e}"}
             driver.close()
-            send_push_notification(message, user, token)
+            send_push_notification(message, token, user)
             sys.exit(0)
 
 if __name__ == "__main__":
