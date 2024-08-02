@@ -1,6 +1,6 @@
-import logging
 import argparse
 import json
+import logging
 
 
 def setup_logger(args):

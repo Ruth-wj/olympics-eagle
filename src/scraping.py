@@ -1,15 +1,16 @@
-from selenium import webdriver
+import logging
 import random
 import time
-import logging
-from user_agents import user_agents
+
+from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+from webdriver_manager.chrome import ChromeDriverManager
 
+from user_agents import user_agents
 
 
 def setup_chrome_webdriver(chrome_driver_manager: ChromeDriverManager) -> webdriver:

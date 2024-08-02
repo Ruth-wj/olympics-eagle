@@ -1,5 +1,7 @@
-import requests
 import logging
+
+import requests
+
 
 def send_push_notification(message: dict, token: str, user: str):
     payload = {"message": message, "token": token, "user": user}

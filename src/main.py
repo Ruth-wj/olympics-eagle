@@ -1,17 +1,19 @@
 
-import time
 import logging
-from utils import setup_logger, parse_args, get_pushover_keys
 import sys
+import time
+
 from webdriver_manager.chrome import ChromeDriverManager
+
 from notifications import send_push_notification
 from scraping import (
-    setup_chrome_webdriver,
-    refresh_on_access_denied,
-    get_offer_states,
     get_offer_links,
-    wait_for_page_to_load
+    get_offer_states,
+    refresh_on_access_denied,
+    setup_chrome_webdriver,
+    wait_for_page_to_load,
 )
+from utils import get_pushover_keys, parse_args, setup_logger
 
 urls_to_check = {
     "climbing": "https://ticket-resale.paris2024.org/searchresult/eventseries/3217069?amount=2",
