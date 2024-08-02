@@ -27,26 +27,27 @@ def setup_chrome_webdriver(chrome_driver_manager: ChromeDriverManager) -> webdri
     return driver
 
 
-def click_cookie_banner(driver):
+def click_cookie_banner(driver: webdriver) -> None:
     only_necessary_button = WebDriverWait(driver, 60).until(
         EC.element_to_be_clickable((By.CSS_SELECTOR, "a.cmpboxbtn.cmpboxbtnno.cmptxt_btn_no"))
     )
     only_necessary_button.click()
 
 
-def find_event_dates(driver):
+def find_event_dates(driver: webdriver) -> list:
     offer_elements = driver.find_elements(
         By.CSS_SELECTOR, "div.listing-item.theme-text-color.listing-item-clickable"
     )
     return offer_elements
 
-def wait_for_page_to_load(driver):
+def wait_for_page_to_load(driver: webdriver) -> None:
+    """bad bad bad todo proper failure modes here"""
     while True:
         page_state = driver.execute_script('return document.readyState;')
         if page_state == "complete":
             break
 
-def get_offer_states(driver):
+def get_offer_states(driver: webdriver) -> list:
     element_css = 'div.listing-event-status.theme-text-highlight-color.theme-interaction-color.hidden-xs.hidden-sm.listing-event-price > span'
     try:
         logging.info("checking for offer states")
@@ -60,7 +61,7 @@ def get_offer_states(driver):
         elements = []
     return [element.text for element in elements]
 
-def get_offer_links(driver):
+def get_offer_links(driver: webdriver) -> list:
     # Locate all <a> elements
     a_elements = driver.find_elements(By.TAG_NAME, 'a')
 
@@ -70,7 +71,7 @@ def get_offer_links(driver):
     relevent_hrefs = [href for href in string_hrefs if "/tickets/all/" in href]
     return relevent_hrefs
 
-def refresh_on_access_denied(driver):
+def refresh_on_access_denied(driver: webdriver) -> None:
     try:
         h1_element = driver.find_element(By.TAG_NAME, 'h1')
         if h1_element.text == "Access Denied":
