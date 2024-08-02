@@ -10,6 +10,7 @@ python = "^3.10"
 requests = "^2.32.3"
 selenium = "^4.23.1"
 webdriver-manager = "^4.0.2"
+pre-commit = "^3.8.0"
 
 
 [build-system]
