@@ -1,5 +1,5 @@
 
-import time 
+import time
 import logging
 from utils import setup_logger, parse_args, get_pushover_keys
 import sys
@@ -48,7 +48,7 @@ def main(sysargs):
                 wait_for_page_to_load(driver)
 
                 # check url
-                while driver.current_url != url: 
+                while driver.current_url != url:
                     logging.info("checking access denied")
                     refresh_on_access_denied(driver)
                     logging.info("sleeping in queue probably ...")
@@ -74,7 +74,7 @@ def main(sysargs):
                 logging.info(f"diff for sport: {sport} \n {diff_offer_states}")
 
                 trigger = len(diff_offer_states) > 0
-                
+
                 # update state
                 previous_offer_states[sport] = current_offer_states
 
@@ -86,7 +86,7 @@ def main(sysargs):
                     logging.info("Sending push notification ...")
                     send_push_notification(message, user, token)
 
-                
+
         except Exception as e:
             logging.info(e)
             message = {f"Something unexpected happened. Error: {e}"}

@@ -8,7 +8,6 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 
 
@@ -63,7 +62,7 @@ def get_offer_states(driver):
 def get_offer_links(driver):
     # Locate all <a> elements
     a_elements = driver.find_elements(By.TAG_NAME, 'a')
-    
+
     # Extract href attributes
     hrefs = [element.get_attribute('href') for element in a_elements]
     string_hrefs = [href for href in hrefs if isinstance(href, str)]

@@ -6,7 +6,7 @@ def send_push_notification(message: dict, token: str, user: str):
     headers = {'User-Agent': 'Python', "Content-type": "application/x-www-form-urlencoded"}
     r = requests.post(
         'https://api.pushover.net/1/messages.json',
-        data=payload, 
+        data=payload,
         headers=headers
     )
     logging.info(r.status_code)
