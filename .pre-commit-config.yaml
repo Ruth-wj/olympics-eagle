@@ -1,0 +1,33 @@
+exclude: |
+    (?x)(
+        ^tests/resources/mock_api_key.txt
+    )
+fail_fast: true
+repos:
+  # general quick checks and auto-fixes
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.0.1
+    hooks:
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: check-json
+      - id: check-ast
+      - id: trailing-whitespace
+        files: \.(js|json|md|py)$
+      - id: end-of-file-fixer
+        types: [python]
+      - id: mixed-line-ending
+        args: [--fix=lf]
+        description: Forces to replace line ending by the Windows 'lf' character combination.
+        types: [python]
+      - id: pretty-format-json
+        args: [--autofix, --indent=4, --no-ensure-ascii, --no-sort-keys]
+
+  # Apply ruff linting/checks
+  - repo: https://github.com/charliermarsh/ruff-pre-commit
+    # Ruff version.
+    rev: 'v0.0.259'
+    hooks:
+      - id: ruff 
+        name: "Ruff: faster flake8 linting"
+        args: [ --fix, --exit-non-zero-on-fix, --ignore, E501]
