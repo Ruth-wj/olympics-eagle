@@ -14,10 +14,10 @@ from selenium.webdriver.support import expected_conditions as EC
 
 def setup_chrome_webdriver(chrome_driver_manager: ChromeDriverManager) -> webdriver:
     options = Options()
-    options.add_argument('--disable-dev-shm-usage')
-    options.add_argument('--headless=new')
     user_agent = random.choice(user_agents)
     options.add_argument(f"user-agent={user_agent}")
+    options.add_argument('--disable-dev-shm-usage')
+    options.add_argument('--headless=new')
     options.add_argument("--no-sandbox")
     options.add_argument("--window-size=1920,1080")
     options.add_argument("--lang=en")
