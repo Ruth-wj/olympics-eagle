@@ -25,7 +25,7 @@ Run the program by executing
 ```
 python src/main.py
 ```
-Alternatively
+Alternatively, execute in in extremely verbose debug mode
 
 ```
 python src/main.py --debug

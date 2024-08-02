@@ -3,7 +3,7 @@ import logging
 import requests
 
 
-def send_push_notification(message: dict, token: str, user: str):
+def send_push_notification(message: dict, token: str, user: str) -> None:
     payload = {"message": message, "token": token, "user": user}
     headers = {'User-Agent': 'Python', "Content-type": "application/x-www-form-urlencoded"}
     r = requests.post(
