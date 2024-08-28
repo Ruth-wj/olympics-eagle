@@ -17,6 +17,7 @@ from user_agents import user_agents
 def setup_chrome_webdriver(chrome_driver_manager: ChromeDriverManager) -> webdriver:
     options = Options()
     user_agent = random.choice(user_agents)
+
     options.add_argument(f"user-agent={user_agent}")
     options.add_argument('--disable-dev-shm-usage')
     options.add_argument('--headless=new')
@@ -27,7 +28,12 @@ def setup_chrome_webdriver(chrome_driver_manager: ChromeDriverManager) -> webdri
     options.add_argument("enable-automation")
     options.add_argument("--disable-browser-side-navigation")
     options.add_argument("--disable-gpu")
+    options.add_argument("--enable-javascript")
+    options.add_argument("--disable-infobars")
+    options.add_argument("--disable-browser-side-navigation")
+
     driver = webdriver.Chrome(service=Service(chrome_driver_manager), options=options)
+
     driver.delete_all_cookies()
     return driver
 

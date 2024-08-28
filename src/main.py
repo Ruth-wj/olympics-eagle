@@ -63,7 +63,7 @@ def main(sysargs):
                 logging.info(f"current offer states:\n{current_offer_states}")
                 logging.info(f"previous offer states:\n{previous_offer_states[sport]}")
 
-                offer_links = get_offer_links(driver)
+                get_offer_links(driver)
                 driver.close()
 
                 number_of_dates_available = len(current_offer_states)
@@ -83,7 +83,7 @@ def main(sysargs):
                 logging.info(f"Number of {sport} dates available: {number_of_dates_available}")
                 if trigger:
                     message = {
-                        f"New {sport} dates available: {number_of_dates_available}.\nurl: {offer_links}.\nNew states: {diff_offer_states}"
+                        f"New {sport} dates available: {number_of_dates_available}.\nurl: {url}.\nNew states: {diff_offer_states}"
                     }
                     logging.info("Sending push notification ...")
                     send_push_notification(message, token, user)
